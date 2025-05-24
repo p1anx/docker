@@ -1,5 +1,5 @@
-IMAGE_NAME := myu_test
-CONTAINER_NAME := myu0
+IMAGE_NAME := imx6ull_dev_img
+CONTAINER_NAME := imx6ull_container
 all:
 	docker build --network host -t $(IMAGE_NAME) .
 	docker run -it $(CONTAINER_NAME) $(IMAGE_NAME)

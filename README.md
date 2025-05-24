@@ -12,11 +12,11 @@ wget https://github.com/p1anx/docker/releases/download/linux_images_tools/uboot-
 # Usage
 - build the image
 ```bash
-docker build --network host -t embeded_linux .
+docker build --network host -t imx6ull_dev_img .
 ```
 - run the container
 ```bash
-docker run -it --privileged=true -v /dev/bus/usb:/dev/bus/usb --name imx6ull embeded_linux
+docker run -it --privileged=true -v /dev/bus/usb:/dev/bus/usb --name imx6ull_container imx6ull_dev_img
 ```
 
 For `Makefile`, clean the image and container using `make clean` command
