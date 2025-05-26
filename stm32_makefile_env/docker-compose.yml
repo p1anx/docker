@@ -1,0 +1,18 @@
+services:
+  stm32_env:
+    image: stm32_env_img:latest
+    container_name: stm32_env0
+    pull_policy: never
+    tty: true
+    stdin_open: true
+    command: /bin/fish
+    # for upload code to board
+    privileged: true
+    devices:
+      - "/dev/bus/usb:/dev/bus/usb"
+    volumes:
+      - "$HOME/0-code/2-stm32/:/root/stm32"
+      # - "$HOME/.vscode/extensions/:/root/.vscode-server/extensions"
+
+
+
