@@ -1,0 +1,8 @@
+services:
+  ubuntu:
+    image: ubuntu_test
+    container_name: u_test0
+    hostname : docker
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
