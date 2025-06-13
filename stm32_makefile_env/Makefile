@@ -7,6 +7,8 @@ up:
 	docker compose up -d
 down:
 	docker compose down
+start:
+	docker exec -it $(CONTAINER_NAME) /bin/fish
 clean:
 	docker rm -f $(CONTAINER_NAME)
 	docker rmi -f $(IMAGE_NAME)

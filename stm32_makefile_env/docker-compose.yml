@@ -1,7 +1,10 @@
 services:
   stm32_env:
     image: stm32_env_img:latest
+    hostname: stm32_dev
     container_name: stm32_env0
+    user: "${UID}:${GID}"
+    # user: "$(UID:-1000"
     pull_policy: never
     tty: true
     stdin_open: true
@@ -11,7 +14,8 @@ services:
     devices:
       - "/dev/bus/usb:/dev/bus/usb"
     volumes:
-      - "$HOME/0-code/2-stm32/:/root/stm32"
+      - "$HOME/0-code/2-stm32/:/home/stm32"
+    env_file: .env
       # - "$HOME/.vscode/extensions/:/root/.vscode-server/extensions"
 
 
