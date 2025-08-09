@@ -1,0 +1,12 @@
+services:
+  cloudreve:
+    image: cloudreve/cloudreve:latest
+    container_name: cloudreve
+    restart: always
+    ports:
+      - "5212:5212"
+    volumes:
+      - /cloudreve/uploads:/cloudreve/uploads
+      - /cloudreve/data:/cloudreve/data
+    environment:
+      - TZ=Asia/Shanghai

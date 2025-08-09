@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ARG USER=ubuntu_test
+ARG USER=ubuntu24_test
 ARG UID=1001
 ARG GID=1001
 
