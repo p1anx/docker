@@ -1,0 +1,47 @@
+services:
+  # 使用 MariaDB 替代 MySQL（通常更稳定）
+  db:
+    image: mariadb:10.6
+    container_name: nextcloud_db
+    restart: unless-stopped
+    command: >
+      --transaction-isolation=READ-COMMITTED
+      --binlog-format=ROW
+      --innodb-file-per-table=1
+      --skip-innodb-read-only-compressed
+    environment:
+      MYSQL_ROOT_PASSWORD: nextcloud
+      MYSQL_PASSWORD: nextcloud
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - nextcloud_network
+
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud_app
+    restart: unless-stopped
+    ports:
+      - "8888:80"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+    volumes:
+      - ./nextcloud_data:/var/www/html
+      - ./config:/var/www/html/config
+    depends_on:
+      - db
+    networks:
+      - nextcloud_network
+
+volumes:
+  db_data:
+  nextcloud_data:
+
+networks:
+  nextcloud_network:
+    driver: bridge
